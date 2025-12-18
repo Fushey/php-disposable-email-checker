@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="header.png" alt="TempMailChecker PHP SDK" width="100%">
+</div>
+
 # TempMailChecker PHP SDK
 
 [![Latest Version](https://img.shields.io/packagist/v/tempmailchecker/php-sdk.svg?style=flat-square)](https://packagist.org/packages/tempmailchecker/php-sdk)
