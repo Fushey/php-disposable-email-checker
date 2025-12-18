@@ -16,8 +16,9 @@ class TempMailChecker
 {
     /**
      * Regional endpoint URLs
+     * All endpoints use /check and /usage directly (no /api prefix)
      */
-    public const ENDPOINT_EU = 'https://tempmailchecker.com/api';
+    public const ENDPOINT_EU = 'https://tempmailchecker.com';
     public const ENDPOINT_US = 'https://us.tempmailchecker.com';
     public const ENDPOINT_ASIA = 'https://asia.tempmailchecker.com';
     
@@ -35,7 +36,6 @@ class TempMailChecker
     
     /**
      * Custom endpoint URL (optional, for regional endpoints)
-     * US and Asia endpoints don't include /api, EU does
      * 
      * @var string|null
      */
@@ -56,7 +56,8 @@ class TempMailChecker
      *                              - TempMailChecker::ENDPOINT_EU (default)
      *                              - TempMailChecker::ENDPOINT_US
      *                              - TempMailChecker::ENDPOINT_ASIA
-     *                              Or provide full URL: 'https://us.tempmailchecker.com'
+     *                              Or provide full base URL: 'https://us.tempmailchecker.com'
+     *                              Note: All endpoints use /check and /usage directly (no /api prefix)
      */
     public function __construct(string $apiKey, ?string $endpoint = null)
     {
@@ -172,7 +173,7 @@ class TempMailChecker
     /**
      * Get the full API URL
      * 
-     * EU endpoint includes /api, US and Asia endpoints don't
+     * All endpoints use paths directly: /check, /usage (no /api prefix)
      * 
      * @param string $path API endpoint path (e.g., '/check', '/usage')
      * @return string Full URL
@@ -180,10 +181,6 @@ class TempMailChecker
     private function getApiUrl(string $path): string
     {
         $base = $this->endpoint ?? self::BASE_URL;
-        
-        // EU endpoint already has /api, US and Asia don't
-        // If base doesn't end with /api, we're using US/Asia endpoint
-        // In that case, path should be /check or /usage directly (no /api prefix)
         return rtrim($base, '/') . $path;
     }
     
