@@ -3,7 +3,6 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use TempMailChecker\TempMailChecker;
-use Exception;
 
 // Replace with your actual API key
 $apiKey = 'your_api_key_here';
