@@ -1,0 +1,43 @@
+{
+    "name": "tempmailchecker/php-sdk",
+    "description": "PHP SDK for TempMailChecker API - Detect disposable email addresses in real-time",
+    "type": "library",
+    "keywords": [
+        "email",
+        "disposable",
+        "temporary",
+        "validation",
+        "tempmail",
+        "spam",
+        "api",
+        "sdk"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TempMailChecker",
+            "email": "support@tempmailchecker.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TempMailChecker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TempMailChecker\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
+
