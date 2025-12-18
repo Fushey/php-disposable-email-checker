@@ -4,7 +4,7 @@
 
 # TempMailChecker PHP SDK
 
-[![GitHub release](https://img.shields.io/github/v/release/Fushey/php-disposable-email-checker?style=flat-square)](https://github.com/Fushey/php-disposable-email-checker/releases)
+[![Latest Release](https://img.shields.io/github/v/release/Fushey/php-disposable-email-checker?include_prereleases=&style=flat-square&logo=github)](https://github.com/Fushey/php-disposable-email-checker/releases/latest)
 [![License](https://img.shields.io/github/license/Fushey/php-disposable-email-checker?style=flat-square)](LICENSE)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D7.4-777BB4?style=flat-square&logo=php)](https://php.net)
 [![GitHub stars](https://img.shields.io/github/stars/Fushey/php-disposable-email-checker?style=flat-square)](https://github.com/Fushey/php-disposable-email-checker/stargazers)
