@@ -7,8 +7,12 @@ use TempMailChecker\TempMailChecker;
 // Replace with your actual API key
 $apiKey = 'your_api_key_here';
 
-// Initialize the checker
+// Initialize the checker (defaults to EU endpoint)
 $checker = new TempMailChecker($apiKey);
+
+// Or use a specific regional endpoint:
+// $checker = new TempMailChecker($apiKey, TempMailChecker::ENDPOINT_US);
+// $checker = new TempMailChecker($apiKey, TempMailChecker::ENDPOINT_ASIA);
 
 // Example 1: Check if an email is disposable
 echo "Example 1: Check email address\n";
