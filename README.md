@@ -69,17 +69,18 @@ $result = $checker->checkDomain('guerrillamail.com');
 Use regional endpoints for lower latency:
 
 ```php
-// US endpoint
-$checker = new TempMailChecker(
-    'your_api_key',
-    'https://us.tempmailchecker.com/api'
-);
+use TempMailChecker\TempMailChecker;
 
-// Asia endpoint
-$checker = new TempMailChecker(
-    'your_api_key',
-    'https://asia.tempmailchecker.com/api'
-);
+// EU endpoint (default) - includes /api
+$checker = new TempMailChecker('your_api_key');
+// or explicitly:
+$checker = new TempMailChecker('your_api_key', TempMailChecker::ENDPOINT_EU);
+
+// US endpoint - no /api prefix
+$checker = new TempMailChecker('your_api_key', TempMailChecker::ENDPOINT_US);
+
+// Asia endpoint - no /api prefix
+$checker = new TempMailChecker('your_api_key', TempMailChecker::ENDPOINT_ASIA);
 ```
 
 ### Check Usage
