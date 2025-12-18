@@ -15,9 +15,16 @@ use Exception;
 class TempMailChecker
 {
     /**
-     * Base API URL
+     * Regional endpoint URLs
      */
-    private const BASE_URL = 'https://tempmailchecker.com/api';
+    public const ENDPOINT_EU = 'https://tempmailchecker.com/api';
+    public const ENDPOINT_US = 'https://us.tempmailchecker.com';
+    public const ENDPOINT_ASIA = 'https://asia.tempmailchecker.com';
+    
+    /**
+     * Default base API URL (EU endpoint)
+     */
+    private const BASE_URL = self::ENDPOINT_EU;
     
     /**
      * API key for authentication
@@ -28,6 +35,7 @@ class TempMailChecker
     
     /**
      * Custom endpoint URL (optional, for regional endpoints)
+     * US and Asia endpoints don't include /api, EU does
      * 
      * @var string|null
      */
@@ -44,7 +52,11 @@ class TempMailChecker
      * Create a new TempMailChecker instance
      * 
      * @param string $apiKey Your TempMailChecker API key
-     * @param string|null $endpoint Optional custom endpoint (e.g., 'https://us.tempmailchecker.com/api')
+     * @param string|null $endpoint Optional custom endpoint. Use constants:
+     *                              - TempMailChecker::ENDPOINT_EU (default)
+     *                              - TempMailChecker::ENDPOINT_US
+     *                              - TempMailChecker::ENDPOINT_ASIA
+     *                              Or provide full URL: 'https://us.tempmailchecker.com'
      */
     public function __construct(string $apiKey, ?string $endpoint = null)
     {
@@ -160,12 +172,18 @@ class TempMailChecker
     /**
      * Get the full API URL
      * 
-     * @param string $path API endpoint path
+     * EU endpoint includes /api, US and Asia endpoints don't
+     * 
+     * @param string $path API endpoint path (e.g., '/check', '/usage')
      * @return string Full URL
      */
     private function getApiUrl(string $path): string
     {
         $base = $this->endpoint ?? self::BASE_URL;
+        
+        // EU endpoint already has /api, US and Asia don't
+        // If base doesn't end with /api, we're using US/Asia endpoint
+        // In that case, path should be /check or /usage directly (no /api prefix)
         return rtrim($base, '/') . $path;
     }
     
