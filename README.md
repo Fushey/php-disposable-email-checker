@@ -4,10 +4,10 @@
 
 # TempMailChecker PHP SDK
 
-[![Latest Version](https://img.shields.io/packagist/v/tempmailchecker/php-sdk.svg?style=flat-square)](https://packagist.org/packages/tempmailchecker/php-sdk)
-[![Total Downloads](https://img.shields.io/packagist/dt/tempmailchecker/php-sdk.svg?style=flat-square)](https://packagist.org/packages/tempmailchecker/php-sdk)
-[![License](https://img.shields.io/packagist/l/tempmailchecker/php-sdk.svg?style=flat-square)](LICENSE)
-[![PHP Version](https://img.shields.io/packagist/php-v/tempmailchecker/php-sdk.svg?style=flat-square)](https://php.net)
+[![GitHub release](https://img.shields.io/github/v/release/Fushey/php-disposable-email-checker?style=flat-square)](https://github.com/Fushey/php-disposable-email-checker/releases)
+[![License](https://img.shields.io/github/license/Fushey/php-disposable-email-checker?style=flat-square)](LICENSE)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.4-777BB4?style=flat-square&logo=php)](https://php.net)
+[![GitHub stars](https://img.shields.io/github/stars/Fushey/php-disposable-email-checker?style=flat-square)](https://github.com/Fushey/php-disposable-email-checker/stargazers)
 
 > **Detect disposable email addresses in real-time** with the TempMailChecker API. Block fake signups, prevent spam, and protect your platform from abuse.
 
