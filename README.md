@@ -93,6 +93,9 @@ $usage = $checker->getUsage();
 ### Error Handling
 
 ```php
+use TempMailChecker\TempMailChecker;
+use Exception;
+
 try {
     $isDisposable = $checker->isDisposable('user@example.com');
 } catch (Exception $e) {
@@ -133,7 +136,10 @@ try {
 ### Laravel Integration
 
 ```php
+namespace App\Services;
+
 use TempMailChecker\TempMailChecker;
+use Exception;
 
 class EmailValidationService
 {
@@ -141,12 +147,21 @@ class EmailValidationService
     
     public function __construct()
     {
-        $this->checker = new TempMailChecker(config('services.tempmailchecker.key'));
+        $apiKey = config('services.tempmailchecker.key');
+        if (empty($apiKey)) {
+            throw new Exception('TempMailChecker API key not configured');
+        }
+        $this->checker = new TempMailChecker($apiKey);
     }
     
     public function validateEmail(string $email): bool
     {
-        return !$this->checker->isDisposable($email);
+        try {
+            return !$this->checker->isDisposable($email);
+        } catch (Exception $e) {
+            \Log::warning('TempMailChecker API error: ' . $e->getMessage());
+            return true; // Fail open
+        }
     }
 }
 ```
@@ -164,11 +179,19 @@ services:
 ### WordPress Plugin
 
 ```php
+use TempMailChecker\TempMailChecker;
+use Exception;
+
 add_filter('registration_errors', function($errors, $sanitized_user_login, $user_email) {
-    $checker = new TempMailChecker(get_option('tempmailchecker_api_key'));
-    
-    if ($checker->isDisposable($user_email)) {
-        $errors->add('disposable_email', 'Disposable email addresses are not allowed.');
+    try {
+        $checker = new TempMailChecker(get_option('tempmailchecker_api_key'));
+        
+        if ($checker->isDisposable($user_email)) {
+            $errors->add('disposable_email', 'Disposable email addresses are not allowed.');
+        }
+    } catch (Exception $e) {
+        // Log error but don't block registration
+        error_log('TempMailChecker error: ' . $e->getMessage());
     }
     
     return $errors;
